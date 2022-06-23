@@ -27,7 +27,7 @@
         ></textarea>
   </div>
 
-  <Fab />
+  <Fab icon="fa-save"/>
 
 <img
   src="https://images.fineartamerica.com/images/artworkimages/mediumlarge/1/bag-end-hobbiton-the-shire-brandon-randash.jpg"
