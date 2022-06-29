@@ -8,7 +8,7 @@ const getDayMonthYear = (dateString) => {
     return {
         day: date.getDate(),
         month: months[date.getMonth()],
-        year: `${date.getFullYear()}, ${days[date.getDay()]}`
+        yearDay: `${date.getFullYear()}, ${days[date.getDay()]}`
     }
 }
 
