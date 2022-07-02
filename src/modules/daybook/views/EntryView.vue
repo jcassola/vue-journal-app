@@ -67,16 +67,33 @@ export default {
     },
     methods: {
         loadEntry(){
-            const entry = this.getEntryById(this.id)
-            if(!entry) return this.$router.push({name: 'no-entry'})
+            let entry
+            if(this.id === 'new'){
+                entry = {
+                    text: '',
+                    date: new Date().getTime()
+                } 
+            }
+            else{
+                entry = this.getEntryById(this.id)
+                if(!entry) return this.$router.push({name: 'no-entry'})
+            }
 
             this.entry = entry
         },
         async saveEntry(){
+            if(this.entry.id){
+                //Update
+                await this.updateEntry(this.entry)
+            }
+            else{
+                //Add
+                const id = await this.createEntry(this.entry)
+                this.$router.push({name: 'entry', params:{id}})
+            }
 
-            this.updateEntry(this.entry)
         },
-        ...mapActions('journal', ['updateEntry'])
+        ...mapActions('journal', ['updateEntry', 'createEntry'])
     },
     computed: {
         ...mapGetters('journal', ['getEntryById']),
