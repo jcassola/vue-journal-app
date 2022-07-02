@@ -9,14 +9,18 @@
             </div>
 
             <div>
-                <button class="btn btn-danger mx-2">
-                    Borrar
-                    <i class="fa fa-trash-alt"></i>
+                <button
+                  v-if="entry.id"
+                  class="btn btn-danger mx-2"
+                  @click="onDeleteEntry">
+                  Borrar
+                  <i class="fa fa-trash-alt"></i>
                 </button>
 
-                <button class="btn btn-primary">
-                    Subir foto
-                    <i class="fa fa-upload"></i>
+                <button
+                  class="btn btn-primary">
+                  Subir foto
+                  <i class="fa fa-upload"></i>
                 </button>
             </div>
 
@@ -93,7 +97,11 @@ export default {
             }
 
         },
-        ...mapActions('journal', ['updateEntry', 'createEntry'])
+        async onDeleteEntry(){
+            await this.deleteEntry(this.entry.id)
+            this.$router.push({name: 'no-entry'})
+        },
+        ...mapActions('journal', ['updateEntry', 'createEntry', 'deleteEntry'])
     },
     computed: {
         ...mapGetters('journal', ['getEntryById']),
