@@ -25,7 +25,7 @@ export const loadEntries = async ({commit}) => {
 }
 
 
-export const updateEntry = async ({commit}, entry) => { //entry debe ser parametro
+export const updateEntry = async ({commit}, entry) => {
     const {date, picture, text} = entry
     
     const dataToSave = {date, picture, text}
